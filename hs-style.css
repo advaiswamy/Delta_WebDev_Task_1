@@ -2,23 +2,26 @@ body{
   background-color: #333333;
 }
 
-p{
-  color: green;
+.heading{
+  color: lime;
   font-size: 2rem;
   font-family: sans-serif;;
   font-weight: bold;
+  margin-top: 40px;
 }
 
-#list{
+.modes{
+  color: green;
+  font-size: 1.7rem;
+}
+
+.list{
   color: white;
   font-size: 1.5rem;
+  margin-bottom: 80px;
 }
 
 a{
   text-decoration: none;
   cursor: pointer;
-  color: green;
-  font-size: 2rem;
-  font-family: sans-serif;
-  font-weight: bold;
 }

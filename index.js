@@ -1,3 +1,22 @@
+//Difficulty
+document.getElementById("Noobie").checked = true; //Setting the default selected value
+var select = 1;
+
+document.getElementById("Noobie").addEventListener("click", function() {
+  select = 1;
+  if (highScoresez[0].Time != 'undefined') {
+    document.querySelector(".best-time").innerHTML = highScoresez[0].Time;
+  }
+});
+
+document.getElementById("Hacker").addEventListener("click", function() {
+  select = 2;
+  if (highScoreshrd[0].Time != 'undefined') {
+    document.querySelector(".best-time").innerHTML = highScoreshrd[0].Time;
+  }
+});
+
+
 //Timer
 var stop = "";
 
@@ -20,7 +39,12 @@ function countdown() {
     document.querySelector(".Start").style.color = "white";
     document.querySelector(".Start").style.fontSize = "20rem";
     document.querySelector(".Start").style.margin = "0";
+    if(window.matchMedia("(max-width: 600px)").matches){
+      document.querySelector(".Start").style.padding = "0px 100px";
+    }
+    else{
     document.querySelector(".Start").style.padding = "35px 180px";
+    }
     document.querySelector(".Start").innerHTML = count;
     count--;
     setTimeout(countdown, 1000);
@@ -29,16 +53,20 @@ function countdown() {
     document.querySelector(".Start").remove();
     const box = document.querySelectorAll(".box");
     setDiv();
-    box.forEach(boxs => boxs.style.opacity = 100)
+    box.forEach(boxs => boxs.style.opacity = 100);
     timer(start);
 
   }
 }
 
 
+
 // Start Button
 document.querySelector(".Start").addEventListener("click", function() {
   clearTimeout(stop);
+  document.querySelectorAll(".radiobtn").forEach(radio => {
+    radio.disabled = true;
+  })
   countdown();
 });
 
@@ -62,48 +90,73 @@ function randGen(min) {
 
 // Sets the text of the divs in random order
 function setDiv() {
-  arr1 = randGen(1);
-  for (var i = 0; i < 20; i++) {
-    document.querySelectorAll(".btn")[i].innerHTML = arr1[i];
-  }
+  var arr1 = randGen(1);
+  document.querySelectorAll(".box").forEach(box => {
+    var btn = document.createElement("div");
+    btn.className = "button btn";
+    btn.innerHTML = arr1[0];
+    var colorbtn = 40 - arr1[0];
+    btn.style.backgroundColor = "rgb("+colorbtn+","+colorbtn+","+colorbtn+")";
+    btn.addEventListener("click", change);
+    arr1.shift();
+    box.appendChild(btn);
+  });
 
-  arr2 = randGen(21);
-  for (var i = 0; i < 20; i++) {
-    document.querySelectorAll(".btn2")[i].innerHTML = arr2[i];
+  if (select > 1) {
+    var arr2 = randGen(21);
+    document.querySelectorAll(".box").forEach(box => {
+      var btn = document.createElement("div");
+      btn.className = "button btn2";
+      btn.innerHTML = arr2[0];
+      var colorbtn = 40 - arr2[0];
+      btn.style.backgroundColor = "rgb("+colorbtn+","+colorbtn+","+colorbtn+")";
+      btn.addEventListener("click", change);
+      arr2.shift();
+      box.appendChild(btn);
+    })
   }
 }
 
 
 //Event Listner
 var prevbutton = 0;
-for (var i = 0; i < 40; i++) {
-  document.querySelectorAll(".button")[i].addEventListener("click", function() {
-    var activeButton = this;
-    if ((prevbutton + 1) == Number(activeButton.innerHTML)) {
-      if (activeButton.innerHTML == 40) {
-        clearTimeout(stop);
-        var yourTime = document.querySelector(".dyna").innerHTML;
-        updateScores(yourTime);
-        alert("You win in " + yourTime);
-      }
-      var parent = activeButton.parentElement;
-      parent.style.opacity = 0;
-      prevbutton = Number(activeButton.innerHTML);
+var end = 20;
 
-      parent.addEventListener("transitionend", function(e) {
-        parent.style.opacity = "100";
-      });
-      setTimeout(function() {
-        activeButton.remove();
-      }, 100);
+function change() {
+  if (select > 1) {
+    end = 40;
+  }
+  var activeButton = this;
+  if ((prevbutton + 1) == Number(activeButton.innerHTML)) {
+    if (activeButton.innerHTML == end) {
+      clearTimeout(stop);
+      var yourTime = document.querySelector(".dyna").innerHTML;
+      updateScores(yourTime);
+      alert("You win in " + yourTime);
     }
+    var parent = activeButton.parentElement;
+    parent.style.opacity = 0;
+    prevbutton = Number(activeButton.innerHTML);
 
-  });
+    parent.addEventListener("transitionend", function(e) {
+      parent.style.opacity = "100";
+    });
+    setTimeout(function() {
+      activeButton.remove();
+    }, 100);
+  }
+  else{
+    var kick = new Audio('sounds/kick-bass.mp3');
+    kick.play();
+  }
 }
 
 
+
+
 //Scoreboard
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+const highScoresez = JSON.parse(localStorage.getItem("highScoresez")) || [];
+const highScoreshrd = JSON.parse(localStorage.getItem("highScoreshrd")) || [];
 
 function updateScores(yourTime) {
   var name = prompt("Enter your name");
@@ -111,13 +164,21 @@ function updateScores(yourTime) {
     name: name,
     Time: yourTime
   };
-  highScores.push(board);
-  highScores.sort((a, b) => a.Time - b.Time);
-  highScores.splice(5);
-  localStorage.setItem('highScores', JSON.stringify(highScores));
+  if (select == 1) {
+    highScoresez.push(board);
+    highScoresez.sort((a, b) => a.Time - b.Time);
+    highScoresez.splice(5);
+    localStorage.setItem('highScoresez', JSON.stringify(highScoresez));
+  }
+  else if (select > 1) {
+    highScoreshrd.push(board);
+    highScoreshrd.sort((a, b) => a.Time - b.Time);
+    highScoreshrd.splice(5);
+    localStorage.setItem('highScoreshrd', JSON.stringify(highScoreshrd));
+  }
 }
 
 //Setting best time
-if (highScores[0].Time != 'undefined') {
-  document.querySelector(".best-time").innerHTML = highScores[0].Time;
+if (highScoresez[0].Time != 'undefined') {
+  document.querySelector(".best-time").innerHTML = highScoresez[0].Time;
 }
