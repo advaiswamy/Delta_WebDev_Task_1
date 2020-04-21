@@ -22,7 +22,7 @@ body{
 /* New Game div*/
 .NewGame{
   color: green;
-  font-size: 1.7rem;
+  font-size: 2rem;
   text-align: left;
 }
 
@@ -30,6 +30,10 @@ body{
   display: inline-block;
   margin-top: 0;
   cursor: pointer;
+}
+
+.font-head{
+  font-size: 1.7rem;
 }
 
 /* Time Div */
@@ -123,7 +127,7 @@ a{
   }
 
   .Start{
-    padding: 23vw 10vw;
+    padding: 21vw 10vw;
     font-size: 8vw;
   }
 
