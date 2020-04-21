@@ -77,6 +77,13 @@ a{
   cursor: pointer;
 }
 
+.Start2{
+  color: white;
+  font-size : 20rem;
+  margin : 0;
+  padding : 35px 180px;
+}
+
 .box{
   position: relative;
   background-color: black;
@@ -109,14 +116,20 @@ a{
 @media (max-width: 600px){
 
   .grid-5x4{
-    height: 350px;
-    width: 400px;
+    height: 75vw;
+    width: 90vw;
     font-size: 2rem;
     margin-left: 0px;
   }
 
   .Start{
+    padding: 25% 20%;
     font-size: 2rem;
+  }
+
+  .Start2{
+    padding : 1vw 25vw;
+    font-size: 60vw;
   }
 
 }

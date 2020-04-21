@@ -36,15 +36,7 @@ var count = 3;
 
 function countdown() {
   if (count > 0) {
-    document.querySelector(".Start").style.color = "white";
-    document.querySelector(".Start").style.fontSize = "20rem";
-    document.querySelector(".Start").style.margin = "0";
-    if(window.matchMedia("(max-width: 600px)").matches){
-      document.querySelector(".Start").style.padding = "0px 100px";
-    }
-    else{
-    document.querySelector(".Start").style.padding = "35px 180px";
-    }
+    document.querySelector(".Start").classList.add("Start2");
     document.querySelector(".Start").innerHTML = count;
     count--;
     setTimeout(countdown, 1000);
@@ -87,33 +79,27 @@ function randGen(min) {
   return arr;
 }
 
-
-// Sets the text of the divs in random order
-function setDiv() {
-  var arr1 = randGen(1);
+//Creates button
+function btnGen(num,cls)
+{
+  arrx = randGen(num);
   document.querySelectorAll(".box").forEach(box => {
     var btn = document.createElement("div");
-    btn.className = "button btn";
-    btn.innerHTML = arr1[0];
-    var colorbtn = 40 - arr1[0];
+    btn.className = cls;
+    btn.innerHTML = arrx[0];
+    var colorbtn = 40 - arrx[0];
     btn.style.backgroundColor = "rgb("+colorbtn+","+colorbtn+","+colorbtn+")";
     btn.addEventListener("click", change);
-    arr1.shift();
+    arrx.shift();
     box.appendChild(btn);
   });
+}
+// Sets the text of the divs in random order
+function setDiv() {
+  btnGen(1,"button btn");
 
   if (select > 1) {
-    var arr2 = randGen(21);
-    document.querySelectorAll(".box").forEach(box => {
-      var btn = document.createElement("div");
-      btn.className = "button btn2";
-      btn.innerHTML = arr2[0];
-      var colorbtn = 40 - arr2[0];
-      btn.style.backgroundColor = "rgb("+colorbtn+","+colorbtn+","+colorbtn+")";
-      btn.addEventListener("click", change);
-      arr2.shift();
-      box.appendChild(btn);
-    })
+    btnGen(21,"button btn2");
   }
 }
 
