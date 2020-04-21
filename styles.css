@@ -22,7 +22,7 @@ body{
 /* New Game div*/
 .NewGame{
   color: green;
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-align: left;
 }
 
@@ -123,12 +123,12 @@ a{
   }
 
   .Start{
-    padding: 25% 20%;
-    font-size: 2rem;
+    padding: 23vw 10vw;
+    font-size: 8vw;
   }
 
   .Start2{
-    padding : 1vw 25vw;
+    padding : 10% 15%;
     font-size: 60vw;
   }
 
