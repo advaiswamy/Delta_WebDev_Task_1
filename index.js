@@ -25,14 +25,14 @@ document.getElementById("Hacker").addEventListener("click", function() {
 
 
 //Timer
-
+var stop = "";
 function timer(start) {//Takes in the time the game starts as a parameter and checks the time difference from it
   var end = (new Date).getTime();
   var delta = (end - start) / 1000;
   delta.toFixed(3);
   document.querySelector(".dyna").innerHTML = delta;
-  let stop = setTimeout(function() { //Refreshes the timer every 30 seconds
-    timer(start)
+   stop = setTimeout(function() { //Refreshes the timer every 30 seconds
+     timer(start)
   }, 30);
 }
 
