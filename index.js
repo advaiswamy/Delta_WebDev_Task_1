@@ -1,31 +1,37 @@
 //Difficulty
 document.getElementById("Noobie").checked = true; //Setting the default selected value
-var select = 1;
+var select = 1; //Contains the difficulty level
 
+//Checks for highscores in localStorage and sets it on click if present
 document.getElementById("Noobie").addEventListener("click", function() {
   select = 1;
-  if (highScoresez[0].Time != 'undefined') {
+  if (highScoresez.length !== 0) {
     document.querySelector(".best-time").innerHTML = highScoresez[0].Time;
+  }
+  else{
+    document.querySelector(".best-time").innerHTML = 0.00.toFixed(2);
   }
 });
 
 document.getElementById("Hacker").addEventListener("click", function() {
   select = 2;
-  if (highScoreshrd[0].Time != 'undefined') {
+  if (highScoreshrd.length !== 0) {
     document.querySelector(".best-time").innerHTML = highScoreshrd[0].Time;
+  }
+  else{
+    document.querySelector(".best-time").innerHTML = 0.00.toFixed(2);
   }
 });
 
 
 //Timer
-var stop = "";
 
-function timer(start) {
+function timer(start) {//Takes in the time the game starts as a parameter and checks the time difference from it
   var end = (new Date).getTime();
   var delta = (end - start) / 1000;
   delta.toFixed(3);
   document.querySelector(".dyna").innerHTML = delta;
-  stop = setTimeout(function() {
+  let stop = setTimeout(function() { //Refreshes the timer every 30 seconds
     timer(start)
   }, 30);
 }
@@ -35,7 +41,7 @@ function timer(start) {
 var count = 3;
 
 function countdown() {
-  if (count > 0) {
+  if (count > 0) { //Calls the function and decreases count till 1 and then initializes the game
     document.querySelector(".Start").classList.add("Start2");
     document.querySelector(".Start").innerHTML = count;
     count--;
@@ -64,8 +70,8 @@ document.querySelector(".Start").addEventListener("click", function() {
 });
 
 
-//Restart button
-document.querySelector("#restart").addEventListener("click", function() {
+//New game button
+document.querySelector(".newGame").addEventListener("click", function() {
   location.reload();
 });
 
@@ -95,6 +101,7 @@ function btnGen(num,cls)
     box.appendChild(btn);
   });
 }
+
 // Sets the text of the divs in random order
 function setDiv() {
   btnGen(1,"button btn");
@@ -109,6 +116,7 @@ function setDiv() {
 var prevbutton = 0;
 var end = 20;
 
+//Adds event listner and checks whether the right button is pressed
 function change() {
   if (select > 1) {
     end = 40;
@@ -165,7 +173,7 @@ function updateScores(yourTime) {
   }
 }
 
-//Setting best time
-if (highScoresez[0].Time != 'undefined') {
+//Initializing the best time
+if (highScoresez.length !== 0 ) {
   document.querySelector(".best-time").innerHTML = highScoresez[0].Time;
 }

@@ -9,35 +9,38 @@ body{
 }
 
 /* Heading */
-.head{
+
+.head{ /*Section that contains the headers including the time divs*/
   height: 40%;
   margin-bottom: 80px;
   align-self: center;
 }
 
-.left{
+.left{ /*A div inside the section that contains all the elements*/
   display:inline-block;
 }
 
 /* New Game div*/
-.NewGame{
+
+.header{ /*Contains all the contents including the Heading, New Game and High Scores text*/
   color: green;
   font-size: 2rem;
   text-align: left;
 }
 
-.new{
+.newGame{ /*Refers to the New Game text*/
   display: inline-block;
   margin-top: 0;
   cursor: pointer;
 }
 
-.font-head{
+.font-head{ /*A class added to new game and high scores to increase its font size*/
   font-size: 1.7rem;
 }
 
 /* Time Div */
-#time{
+
+#info{ /*Div that contains time and difficulty*/
   font-size: 1.5rem;
   font-weight: bold;
   color:white;
@@ -45,12 +48,12 @@ body{
   font-family: monospace;
 }
 
-.contain,.contain2{
+.time{
   display: inline-block;
   width: 120px;
 }
 
-a{
+a{/*High scores*/
   text-decoration: none;
   cursor: pointer;
   color: green;
@@ -58,6 +61,7 @@ a{
 }
 
 /* Grid */
+
 .grid-5x4{
   height: 28rem;
   width: 34rem;
@@ -81,14 +85,14 @@ a{
   cursor: pointer;
 }
 
-.Start2{
+.Start2{ /*Contains styling for the countdown*/
   color: white;
   font-size : 20rem;
   margin : 0;
   padding : 35px 180px;
 }
 
-.box{
+.box{/*Each cell of the grid*/
   position: relative;
   background-color: black;
   border-radius: 10%;
@@ -97,7 +101,7 @@ a{
   cursor: pointer;
 }
 
-.button{
+.button{/*Contains styling for the div that is created in the js file which contains the numbers*/
   color: green;
   font-size: 2.8rem;
   font-weight: bold;
@@ -116,6 +120,8 @@ a{
 .btn{
   z-index: 3;
 }
+
+/*Optimization for phones*/
 
 @media (max-width: 600px){
 
