@@ -47,7 +47,8 @@ function countdown() {
     setDiv();
     box.forEach(boxs => boxs.style.opacity = 100);
     timer(start);
-
+    let crash = new Audio('sounds/crash.mp3');
+    crash.play();
   }
 }
 
@@ -132,8 +133,8 @@ function change() {
     }, 100);
   }
   else{
-    var kick = new Audio('sounds/kick-bass.mp3');
-    kick.play();
+    var audio = new Audio('sounds/yellow.mp3');
+    audio.play();
   }
 }
 
